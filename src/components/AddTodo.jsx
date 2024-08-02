@@ -5,11 +5,11 @@ function AddTodo() {
   const { listNote } = useSelector((state) => state.notes);
 
   return (
-    <div>
-      <ul>
-        {listNote.map((elm) => {
-          return <TodoList key={elm.id} {...elm} />;
-        })}
+    <div className="container mx-auto p-4">
+      <ul className="space-y-4">
+        {listNote.map((elm) => (
+          <TodoList key={elm.id} {...elm} />
+        ))}
       </ul>
     </div>
   );

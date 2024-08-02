@@ -1,41 +1,48 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo, deleteTodo } from "./features/todos";
+import { addTodo, deleteTodo } from "../features/todos";
 
 function NoteMaker() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title === "" || desc === "") return;
-    dispatch(addTodo({ title: title, desc: desc }));
+    dispatch(addTodo({ title, desc }));
     setTitle("");
     setDesc("");
   };
 
   return (
-    <div>
-      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+    <div className='container mx-auto p-4'>
+      <form className='space-y-4' onSubmit={handleSubmit}>
         <button
-          className='border w-[100px]'
+          className='bg-red-500 text-white p-2 rounded'
           onClick={() => dispatch(deleteTodo())}
+          type='button'
         >
-          delete
+          Delete checked List
         </button>
         <input
-          className='border w-[200PX]'
+          className='w-full p-2 border rounded'
           type='text'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder='Title'
         />
-        <input
-          className='border w-[200PX]'
+        <textarea
+          className='w-full p-2 border rounded'
           type='text'
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
+          placeholder='Description'
+          rows='4'
         />
-        <button className='border w-[150px]'>add</button>
+        <button className='bg-green-500 text-white p-2 rounded' type='submit'>
+          Add Note
+        </button>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import "./App.css";
 import AddTodo from "./components/AddTodo";
-import NoteMaker from "./NoteMaker";
+
+import NoteMaker from "./components/NoteMaker";
 
 function App() {
   return (
